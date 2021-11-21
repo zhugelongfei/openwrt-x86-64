@@ -94,12 +94,12 @@ jobs:
         cd openwrt
         echo -e "$(nproc) thread compile"
         #make -j$(nproc) || make -j1 || make -j1 V=s
-        make $(OW_PACKAGE_PATH)/brook/compile V=s
-        make $(OW_PACKAGE_PATH)/hysteria/compile V=s
-        make $(OW_PACKAGE_PATH)/microsocks/compile V=s
-        make $(OW_PACKAGE_PATH)/shadowsocksr-libev/compile V=s
-        make $(OW_PACKAGE_PATH)/ssocks/compile V=s
-        make $(OW_PACKAGE_PATH)/trojan-go/compile V=s
+        make package/feeds/passwall/brook/compile V=s
+        make package/feeds/passwall/hysteria/compile V=s
+        make package/feeds/passwall/microsocks/compile V=s
+        make package/feeds/passwall/shadowsocksr-libev/compile V=s
+        make package/feeds/passwall/ssocks/compile V=s
+        make package/feeds/passwall/trojan-go/compile V=s
         echo "::set-output name=status::success"
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
